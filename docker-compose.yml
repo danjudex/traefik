@@ -5,9 +5,11 @@ services:
     image: traefik:2.3
     container_name: traefik
     command:
-      - --api.insecure=true
+      - --accesslog=${ACCESSLOG}
+      - --api.insecure=${API_INSECURE}
       - --entryPoints.web.address=:80
       - --entryPoints.websecure.address=:443
+      - --entryPoints.websecure.http.tls.certResolver=leresolver
       - --providers.docker=true
       - --providers.docker.exposedByDefault=false
       - --providers.docker.network=web
