@@ -4,6 +4,10 @@ services:
   traefik:
     image: traefik:2.3
     container_name: traefik
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedByDefault=false
     networks:
       - web
     ports:
@@ -12,6 +16,7 @@ services:
       - 9080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    #   - ./docker/traefik/traefik.yml:/etc/traefik/traefik.yml
     restart: always
 
 networks:
