@@ -10,6 +10,7 @@ services:
       - --entryPoints.websecure.address=:443
       - --providers.docker=true
       - --providers.docker.exposedByDefault=false
+      - --providers.docker.network=web
     networks:
       - web
     ports:
