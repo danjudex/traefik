@@ -1,7 +1,7 @@
 install: env-init network-create up
 
 env-init:
-	@test -f ./.env || cp example.env .env	
+	@test -f ./.env || cp .env.example .env	
 
 up:
 	@docker-compose up -d
