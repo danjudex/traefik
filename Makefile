@@ -8,3 +8,6 @@ up:
 
 network-create:
 	@docker network create web
+
+logs:
+	@docker-compose logs -f --tail=100 traefik
