@@ -2,16 +2,16 @@ version: "2"
 
 services:
   traefik:
-    image: traefik:2.3
+    image: traefik:2.6
     container_name: traefik
     command:
-      - --accesslog=${ACCESSLOG}
-      - --api.insecure=${API_INSECURE}
+      - --accesslog=true
+      - --api.insecure=true
       - --entryPoints.web.address=:80
       - --entryPoints.websecure.address=:443
       - --entryPoints.websecure.http.tls.certResolver=leresolver
-      - --certificatesresolvers.leresolver.acme.email=${LE_ACME_EMAIL}
-      - --certificatesresolvers.leresolver.acme.storage=acme.json
+      - --certificatesresolvers.leresolver.acme.email=${TRAEFIK_LE_ACME_EMAIL}
+      # - --certificatesresolvers.leresolver.acme.storage=acme.json
       - --certificatesresolvers.leresolver.acme.httpchallenge.entrypoint=web
       - --providers.docker=true
       - --providers.docker.exposedByDefault=false
@@ -24,7 +24,7 @@ services:
       - 127.0.0.1:8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    restart: always
+    restart: unless-stopped
 
 networks:
   web:
