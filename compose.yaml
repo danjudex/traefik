@@ -9,7 +9,6 @@ services:
       - --entryPoints.websecure.address=:443
       - --entryPoints.websecure.http.tls.certResolver=leresolver
       - --certificatesresolvers.leresolver.acme.email=${TRAEFIK_LE_ACME_EMAIL}
-      # - --certificatesresolvers.leresolver.acme.storage=acme.json
       - --certificatesresolvers.leresolver.acme.httpchallenge.entrypoint=web
       - --providers.docker=true
       - --providers.docker.exposedByDefault=false
