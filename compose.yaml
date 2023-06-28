@@ -25,4 +25,4 @@ services:
 
 networks:
   web:
-    external: true
+    name: 'web'
