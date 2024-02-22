@@ -27,4 +27,4 @@ services:
 
 networks:
   web:
-    name: 'web'
+    external: true
